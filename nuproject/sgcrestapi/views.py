@@ -7,6 +7,11 @@ from rest_framework import status
 from .models import Articulos
 from .models import SocioNegocios
 from .models import CodProveedor
+from .models import CabeceraFactura
+from .models import LineasFactura
+from .models import CentrodeCosto
+from .models import SaldoInicialCDC
+
 from .serializers import *
 
 # Articulos Create y Read all
@@ -230,3 +235,6 @@ def centro_costo(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
 
 
+def facturas_all(request):
+    if request.method == 'GET':
+        facturas = 1

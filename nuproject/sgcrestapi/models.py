@@ -53,7 +53,7 @@ class LineasFactura(models.Model):
     articulo = models.ForeignKey(Articulos, on_delete=models.RESTRICT)
     cantidad = models.IntegerField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)
-    iva = models.DecimalField(max_digits=10, decimal_places=2)
+    impuestos = models.DecimalField(max_digits=10, decimal_places=2)
     moneda = models.CharField("Moneda", max_length=3)
     
 

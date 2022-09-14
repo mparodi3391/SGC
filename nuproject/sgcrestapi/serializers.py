@@ -5,6 +5,8 @@ from .models import SocioNegocios
 from .models import CodProveedor
 from .models import CentrodeCosto
 from .models import SaldoInicialCDC
+from .models import CabeceraFactura
+from .models import LineasFactura
 
 class ArticulosSerializer(serializers.ModelSerializer):
 
@@ -35,3 +37,15 @@ class SaldoInicialCDCSerializer(serializers.ModelSerializer):
     class Meta:
         model=SaldoInicialCDC
         fields=('id','articulo','cantidad','precio_cotizado','cdc')
+
+class CabeceraFacturaSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model=CabeceraFactura
+        fields=('id','fecha_creacion','fecha_contabilizacion','creador','comentario','cdc','estado','folio','subtotal','impuestos','total')
+
+class LineasFacturaSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model=LineasFactura
+        fields=('id','factura','nro_linea','articulo','cantidad','precio','impuestos','moneda')
