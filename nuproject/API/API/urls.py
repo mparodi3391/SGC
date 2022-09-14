@@ -27,6 +27,7 @@ urlpatterns = [
     re_path(r'^api/CodProv/([0-9]+)$', views.articulo_cod_prov),
     re_path(r'^api/CodProvCRUD//([0-9]+)$', views.cod_prov_update_delete),
     re_path(r'^api/CDC/([0-9]+)$', views.saldo_inicial),
-    re_path(r'^api/CDC/$', views.centro_costo)
+    re_path(r'^api/CDC/$', views.centro_costo),
+    re_path(r'^api/facturas/$', views.facturas_all)
 
 ]

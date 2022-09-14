@@ -35,6 +35,29 @@ class SaldoInicialCDC(models.Model):
     precio_cotizado = models.DecimalField(max_digits=8, decimal_places=2)
     cdc = models.ForeignKey(CentrodeCosto, on_delete=models.CASCADE)
 
+class CabeceraFactura(models.Model):
+    fecha_creacion = models.DateTimeField()
+    fecha_contabilizacion = models.DateField()
+    creador = models.CharField("Creador", max_length=20)
+    comentario = models.CharField("Comentario", max_length=256)
+    cdc = models.ForeignKey(CentrodeCosto, on_delete=models.CASCADE)
+    estado = models.CharField("Estado", max_length=1)
+    folio = models.CharField("Numero de Folio", max_length=15)
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2)
+    impuestos = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+
+class LineasFactura(models.Model):
+    factura = models.ForeignKey(CabeceraFactura, on_delete=models.CASCADE)
+    nro_linea = models.IntegerField()
+    articulo = models.ForeignKey(Articulos, on_delete=models.RESTRICT)
+    cantidad = models.IntegerField()
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    iva = models.DecimalField(max_digits=10, decimal_places=2)
+    moneda = models.CharField("Moneda", max_length=3)
+    
+
+
 
 
 
