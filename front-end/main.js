@@ -92,4 +92,11 @@ window.onload = function() {
             e.value = '';
         })
     })
+
+    formularioBusqueda.addEventListener('submit', async ()=>{
+        let nodosFormulario = formularioBusqueda.querySelectorAll("input[type=text]")
+        nodosFormulario.forEach(element => {
+            console.log(element.id)
+        })
+    })
 }

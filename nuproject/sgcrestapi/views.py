@@ -63,6 +63,11 @@ def single_articulo(request, id):
         articulo.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+# Recibir raw query from FrontEnd
+@api_view(['GET'])
+def raw_query():
+
+
 # Socio de Negocios Read all, Create
 
 @api_view(['GET','POST'])
@@ -219,7 +224,6 @@ def saldo_inicial(request,id):
 def centro_costo(request):
     if request.method == 'GET':
         data = CentrodeCosto.objects.all()
-
         serializer = CentrodeCostoSerializer(data, context= {'request': request}, many=True)
 
         return Response(serializer.data) 
@@ -234,7 +238,48 @@ def centro_costo(request):
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
 
-
+@api_view(['GET','POST'])
 def facturas_all(request):
     if request.method == 'GET':
-        facturas = 1
+        facturas = CabeceraFactura.objects.all()
+        serializer = CabeceraFacturaSerializer(facturas, context= {'request': request}, many=True)
+
+        return Response(serializer.data)
+
+    if request.method == 'POST':
+        cabecera_fac = {}
+        #separo cabecera de lineas
+        for prop in request.data:
+            if prop != "lineas":
+                cabecera_fac[prop] = request.data[prop]
+        lineas = []
+        for record in request.data["lineas"]:
+            serializer = LineasFacturaSerializer(data=record)
+            if serializer.is_valid():
+                lineas.append(serializer)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        for record in lineas:
+            record.save()
+
+        cabecera = CabeceraFacturaSerializer(data=cabecera_fac)
+
+        if cabecera.is_valid():
+            cabecera.save()
+            return Response(status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)               
+        
+
+@api_view(['GET'])
+def facturas_por_sn(request,id):
+    if request.method == 'GET':
+        facturas = CabeceraFactura.objects.filter(id=id)
+        serializer = CabeceraFacturaSerializer(facturas, context= {'request': request}, many=True)
+
+        return Response(serializer.data)
+
+    
+
+

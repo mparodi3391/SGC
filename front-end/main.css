@@ -1,0 +1,90 @@
+.navbar {
+    padding: 0;
+}
+
+#navbarSupportedContent {
+    height: 100%;
+}
+
+.nav-link {
+    color: white;
+}
+
+#navbarSupportedContent > ul > li:hover {
+    background-color: white;
+}
+#navbarSupportedContent > ul > li > a:hover {
+    color: black;
+}
+
+#botones-principales {
+    display: flex;
+    margin: auto;
+    max-width: 60%;
+    justify-content: space-evenly;
+    padding: 2.5em 0 2.5em 0;
+}
+
+.tabla{
+    display: block;
+    transition: all 250ms linear;
+}
+
+.create-art{
+    display: grid;
+    grid-template-columns: 15% 45%;
+    grid-template-rows: repeat(6,fit-content(20%));
+    align-items:center;
+    justify-content: center;
+    transition: all 250ms linear;
+}
+
+.create-art > label {
+    grid-column: 1;
+    margin-right: 0;
+    padding: 1em;
+    
+}
+
+.create-art > input {
+    grid-column: 2;
+}
+
+.search-art{
+    display: grid;
+    grid-template-columns: 15% 45%;
+    grid-template-rows: repeat(6,fit-content(20%));
+    align-items:center;
+    justify-content: center;
+    transition: all 250ms linear;
+}
+
+.search-art > label {
+    grid-column: 1;
+    margin-right: 0;
+    padding: 1em;
+    
+}
+
+.search-art > input {
+    grid-column: 2;
+}
+
+.search-art > input[type="text"] {
+    background-color: rgb(241, 241, 98);
+}
+
+#crear-articulo {
+    width: 50%;
+    margin-top: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#buscar-articulo {
+    width: 50%;
+    margin-top: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
