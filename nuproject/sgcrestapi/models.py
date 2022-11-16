@@ -38,6 +38,7 @@ class SaldoInicialCDC(models.Model):
 class CabeceraFactura(models.Model):
     fecha_creacion = models.DateTimeField()
     fecha_contabilizacion = models.DateField()
+    sn = models.ForeignKey(SocioNegocios, on_delete=models.RESTRICT)
     creador = models.CharField("Creador", max_length=20)
     comentario = models.CharField("Comentario", max_length=256)
     cdc = models.ForeignKey(CentrodeCosto, on_delete=models.CASCADE)

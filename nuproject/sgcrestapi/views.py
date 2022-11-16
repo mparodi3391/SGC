@@ -66,6 +66,7 @@ def single_articulo(request, id):
 # Recibir raw query from FrontEnd
 @api_view(['GET'])
 def raw_query():
+    print("holanda")
 
 
 # Socio de Negocios Read all, Create
@@ -245,31 +246,42 @@ def facturas_all(request):
         serializer = CabeceraFacturaSerializer(facturas, context= {'request': request}, many=True)
 
         return Response(serializer.data)
-
+    
     if request.method == 'POST':
-        cabecera_fac = {}
-        #separo cabecera de lineas
-        for prop in request.data:
-            if prop != "lineas":
-                cabecera_fac[prop] = request.data[prop]
-        lineas = []
-        for record in request.data["lineas"]:
-            serializer = LineasFacturaSerializer(data=record)
-            if serializer.is_valid():
-                lineas.append(serializer)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = CabeceraFacturaSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            obj = {}
+            obj['id'] = CabeceraFactura.objects.latest('id').pk
+
+            return Response(obj,status=status.HTTP_201_CREATED)
         
-        for record in lineas:
-            record.save()
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
 
-        cabecera = CabeceraFacturaSerializer(data=cabecera_fac)
 
-        if cabecera.is_valid():
-            cabecera.save()
+@api_view(['GET','POST'])
+def lineas_facturas(request,id):
+    if request.method == 'GET':
+        try:
+            registro = LineasFactura.objects.filter(factura=id)
+        except LineasFactura.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = LineasFacturaSerializer(registro, context = {'request': request}, many=True)
+
+        return Response(serializer.data)
+    
+    if request.method == 'POST':
+
+        serializer = LineasFacturaSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
             return Response(status=status.HTTP_201_CREATED)
         
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)               
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
         
 
 @api_view(['GET'])

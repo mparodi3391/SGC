@@ -42,7 +42,7 @@ class CabeceraFacturaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=CabeceraFactura
-        fields=('id','fecha_creacion','fecha_contabilizacion','creador','comentario','cdc','estado','folio','subtotal','impuestos','total')
+        fields=('id','fecha_creacion','fecha_contabilizacion','sn','creador','comentario','cdc','estado','folio','subtotal','impuestos','total')
 
 class LineasFacturaSerializer(serializers.ModelSerializer):
 

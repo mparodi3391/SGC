@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="facturas.js"></script> 
+    <title>Document</title>
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+        <a class="navbar-brand p-2 text-white" href="#">SGC</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link p-2" href="articulos.html">Articulos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-2" href="facturas.html">Facturas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link p-2" href="#">Socios de Negocios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link p-2" href="#">Obras</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link p-2" href="#">Reportes</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    
+      <main>
+        <h2><b>Factura de Proveedores</b></h2>
+        <div class="header-fac">
+            <div>
+                <table>
+                    <tr>
+                        <td>Codigo SN</td>
+                        <td><input type="number" name="cod_sn" id="cod_sn"></td>
+                    </tr>
+                    <tr>
+                        <td>Nombre SN</td>
+                        <td><input type="text" name="nombre_sn" id="nombre_sn"></td>
+                    </tr>
+                    <tr>
+                        <td>Moneda</td>
+                        <td>
+                            <select name="moneda" id="moneda" onchange="cambioDeMoneda(this)">
+                                <option value="USD">USD</option>
+                                <option value="UYU">UYU</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td>Fecha de Contabilizacion</td>
+                        <td><input type="date"></td>
+                    </tr>
+                    <tr>
+                        <td>Centro de Costo</td>
+                        <td><input type="number"></td>
+                    </tr>
+                    <tr>
+                        <td>N° Folio</td>
+                        <td><input type="text"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="lines-fac">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Articulo</th>
+                        <th>Descripcion</th>
+                        <th>Cantidad</th>
+                        <th>Moneda</th>
+                        <th>Precio</th>
+                        <th>Impuesto</th>
+                    </tr>
+                </thead>
+                <tbody id="lineas-factura">
+                    <tr id="primera-linea" style="display: none;">
+                        <td><input type="text" name="articulo" id="articulo"></td>
+                        <td><input type="text" name="descripcion" id="articulo"></td>
+                        <td><input type="number" name="cantidad" id="cantidad"></td>
+                        <td>
+                            <select name="moneda" id="moneda">
+                                <option value="USD">USD</option>
+                                <option value="UYU">UYU</option>
+                            </select>
+                        </td>
+                        <td><input type="number" step="0.01" id="precio"></td>
+                        <td>
+                            <select name="impuesto" id="impuesto">
+                                <option value="22">22%</option>
+                                <option value="10">10%</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="articulo" id="articulo"></td>
+                        <td><input type="text" name="descripcion" id="articulo"></td>
+                        <td><input type="number" name="cantidad" id="cantidad"></td>
+                        <td>
+                            <select name="moneda" id="moneda">
+                                <option value="USD">USD</option>
+                                <option value="UYU">UYU</option>
+                            </select>
+                        </td>
+                        <td><input type="number" step="0.01" id="precio"></td>
+                        <td>
+                            <select name="impuesto" id="impuesto">
+                                <option value="22">22%</option>
+                                <option value="10">10%</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <i id="plus" class="bi bi-plus-circle p-3" onclick="agregarLinea()"></i>
+        
+      </main>
+    
+</body>
+</html>

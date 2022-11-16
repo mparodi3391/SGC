@@ -29,7 +29,9 @@ urlpatterns = [
     re_path(r'^api/CDC/([0-9]+)$', views.saldo_inicial),
     re_path(r'^api/CDC/$', views.centro_costo),
     re_path(r'^api/facturas/$', views.facturas_all),
-    re_path(r'^api/facturas/SN/([0-9]+)$', views.facturas_por_sn)
+    re_path(r'^api/facturas/SN/([0-9]+)$', views.facturas_por_sn),
+    re_path(r'^api/lineas_factura/([0-9]+)$', views.lineas_facturas)
+
 
 
 ]
